@@ -47,5 +47,30 @@ OMG:
 	push edi
 	pop eax
 	add eax, 1
+	mov eax, esp
+	add eax, 0DEADBEEFh
+	add bx, dx
+	add al, al
+	add eax, [ecx+12]
+	add [ecx+4*ebp+16], ax
+	sub al, 7h
+	sub ebp, 1234H
+	sub al, al
+	cmp ecx, 123H
+	cmp al, 0
+	inc eax
+	dec ebx
+	mul ecx
+	mul dword PTR [ebp]
+	mul word ptr [esi+12]
+	mul dword PTR [esi]
+	div ecx
+	div dword PTR [eax+12]
+	div dword PTR b
+	div dword PTR b[ebp]
+	div dword ptr [256h + ecx*4]
+	and eax, ebx
+	and eax, 12h
+	xor bl, 12h
 _main ENDP
 END
