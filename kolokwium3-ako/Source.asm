@@ -72,5 +72,14 @@ OMG:
 	and eax, ebx
 	and eax, 12h
 	xor bl, 12h
+lol:
+	rol eax, 15
+	ror ax, 6
+	loop lol
+	mov eax, [ebx*4 + 8]
+	mov eax, [esp + 8]
+	mov eax, [ecx + 4*ebx]
+	mov eax, [esp + 4*edi + 12]
+	mov eax, [edi + 4*edi + 8]
 _main ENDP
 END
