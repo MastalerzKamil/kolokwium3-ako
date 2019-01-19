@@ -6,16 +6,18 @@ public _main
 b	dd	 0c8h
 .code
 _main PROC
+etyk:
 	mul b
 	lea ecx, [4*esi+1234h]
 	sub [esi-8], dword ptr 128
 	fmul b[ebx]
-ptl:
+	loop etyk
+ptl1:
 	mov dl, bl
 	mov ebx, [esi+1234h]
 	call edi
 	mov [eax+ecx], bl
-	loop ptl
+	loop ptl1
 Ppp1:
 	shld [edx+4*esi], eax, 3
 	and cl, 0fh
@@ -72,5 +74,12 @@ OMG:
 	and eax, ebx
 	and eax, 12h
 	xor bl, 12h
+	or eax, ebx
+	; ZESTAW 1
+ptl: mov cx, dx
+     in al, 73H
+     sub ebx, 1
+     loop ptl
+     add edx, 3
 _main ENDP
 END
