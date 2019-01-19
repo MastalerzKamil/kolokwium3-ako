@@ -12,12 +12,12 @@ etyk:
 	sub [esi-8], dword ptr 128
 	fmul b[ebx]
 	loop etyk
-ptl1:
+ptl:
 	mov dl, bl
 	mov ebx, [esi+1234h]
 	call edi
 	mov [eax+ecx], bl
-	loop ptl1
+	loop ptl
 Ppp1:
 	shld [edx+4*esi], eax, 3
 	and cl, 0fh
@@ -75,5 +75,18 @@ OMG:
 	and eax, 12h
 	xor bl, 12h
 	or eax, ebx
+; ZESTAW 1
+ptl1: mov cx, dx
+     in al, 73H
+     sub ebx, 1
+     loop ptl1
+     add edx, 3
+
+; ZESTAW 2
+     jc cos
+ptl2: mov [ebx+ecx], dl
+     and si, bx
+     loop ptl2
+cos:
 _main ENDP
 END
