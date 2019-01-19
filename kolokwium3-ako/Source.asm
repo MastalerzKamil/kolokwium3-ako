@@ -75,11 +75,5 @@ OMG:
 	and eax, 12h
 	xor bl, 12h
 	or eax, ebx
-	; ZESTAW 1
-ptl: mov cx, dx
-     in al, 73H
-     sub ebx, 1
-     loop ptl
-     add edx, 3
 _main ENDP
 END
