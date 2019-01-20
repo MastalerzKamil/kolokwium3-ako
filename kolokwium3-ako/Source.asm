@@ -4,8 +4,12 @@ public _main
 
 .data
 b	dd	 0c8h
+tab dw	80 dup (?)
+liczba dd ?
 .code
 _main PROC
+	mov bx, tab
+	mov dx, word ptr liczba[esi-12]
 etyk:
 	mul b
 	lea ecx, [4*esi+1234h]
@@ -71,6 +75,7 @@ OMG:
 	div dword PTR [eax+12]
 	div dword PTR b
 	div dword PTR b[ebp]
+	div dword PTR b[ebp-2]
 	div dword ptr [256h + ecx*4]
 	and eax, ebx
 	and eax, 12h
@@ -109,5 +114,26 @@ etyk2: div b
 	fmul b[ebx]
 	sub [esp-8], dword PTR 128
 	loop etyk2
+	mov [2*ebx+1234h], word ptr 2
+	add [esi-8], dword ptr 128
+	fdiv b[ebx]
+	mov bx, tab
+; ZESTAW 5
+ptl4: add eax, 4
+     neg eax
+     mov [esi], eax
+     add esi, 4
+     loop ptl4
+; ZESTAW 6
+ppp2: shr bx, 3
+     mov [edx + ebx], dl
+     push edx
+     cmp edx, 12
+     je ppp2
+; ZESTAW 7
+ptl5: mov cx, dx ; 66 8B CA
+     sub ebx, 1 ; 83 EB 01
+     loop ptl5   ; E2 F8
+     add edx, 3 ; 83 C2 03
 _main ENDP
 END
