@@ -10,6 +10,7 @@ etyk:
 	mul b
 	lea ecx, [4*esi+1234h]
 	sub [esi-8], dword ptr 128
+	sub [esi-8], dword ptr 128
 	fmul b[ebx]
 	loop etyk
 ptl:
@@ -88,5 +89,25 @@ ptl2: mov [ebx+ecx], dl
      and si, bx
      loop ptl2
 cos:
+; ZESTAW 3
+ptl3: mov al, bh
+     out 70H, al
+     in al, 64h
+     sub bh, [esi][edi]
+     inc ebx
+     loop ptl3
+; ZESTAW 4
+ppp: rol eax, 4        ; C1 C0 04
+     and eax, 0Fh      ; 83 E0 0F
+     inc edx           ; 42
+     mov [ebx+edx], al ; 88 04 1A
+     loop ppp          ; E2 F4
+; wlasne pryklady
+etyk2: div b
+	lea ecx, [esp+1234h]
+	lea ebx, [4*esi+1234h]
+	fmul b[ebx]
+	sub [esp-8], dword PTR 128
+	loop etyk2
 _main ENDP
 END
