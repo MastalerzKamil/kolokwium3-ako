@@ -10,11 +10,16 @@ liczba dd ?
 _main PROC
 	mov bx, tab
 	mov dx, word ptr liczba[esi-12]
+	cmp b, 1
+	cmp [4*ebx+eax+1234h], 1
+	lea ecx, [esi+1234h]
+	fdiv qword ptr [ebx]
+	mov [esi+4*ebx-2], dword ptr 12
 etyk:
 	mul b
 	lea ecx, [4*esi+1234h]
 	sub [esi-8], dword ptr 128
-	sub [esi-8], dword ptr 128
+	add [esi-8], dword ptr 128
 	fmul b[ebx]
 	loop etyk
 ptl:
@@ -69,6 +74,7 @@ OMG:
 	dec ebx
 	mul ecx
 	mul dword PTR [ebp]
+	mul dword PTR b[ebx-12]
 	mul word ptr [esi+12]
 	mul dword PTR [esi]
 	div ecx
